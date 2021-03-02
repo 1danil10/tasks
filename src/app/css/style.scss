@@ -1,8 +1,103 @@
-@import 'var';
-@import 'mixin';
-@import 'fonts';
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: gray;
+  padding: 20px;
+}
 
-.hello {
-  font-family: 'AvenirNextCyr', Arial, sans-serif;
-  color: $textColorDefault;
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+.title {
+  margin-bottom: 20px;
+  color: #f7f7f7;
+  text-align: center;
+}
+
+.checkbox {
+  padding: 10px;
+}
+.checkbox__title {
+  margin-bottom: 20px;
+}
+
+.checkbox__link {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  &:hover,
+  &:focus {
+    color: rgb(196, 196, 196);
+  }
+}
+
+.label {
+  position: relative;
+  display: block;
+  padding-left: 45px;
+  margin-bottom: 15px;
+  font-size: 25px;
+  line-height: 30px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.label__input {
+  position: absolute;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+  opacity: 0;
+  &:hover + .label__check,
+  &:focus + .label__check {
+    background-color: rgb(196, 196, 196);
+  }
+  &:checked + .label__check {
+    background-color: rgb(244, 247, 243);
+  }
+  &:checked + .label__check::after {
+    opacity: 1;
+    transition: opacity 0.125s ease-out;
+  }
+  &:checked:hover + .label__check,
+  &:checked:focus + .label__check {
+    background-color: rgb(196, 196, 196);
+  }
+
+  &:disabled + .label__check {
+    background-color: rgb(75, 75, 75);
+  }
+  &:checked:disabled + .label__check {
+    background-color: rgb(75, 75, 75);
+  }
+  &:checked:hover:disabled + .label__check {
+    background-color: rgb(97, 97, 97);
+  }
+}
+
+.label__check {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 30px;
+  width: 30px;
+  background-color: rgb(233, 233, 233);
+  border: 1px solid black;
+  transition: background-color 0.01s ease-in;
+
+  &::after {
+    content: '\2713';
+    position: absolute;
+    opacity: 0;
+    left: 5px;
+    top: 0;
+  }
 }
